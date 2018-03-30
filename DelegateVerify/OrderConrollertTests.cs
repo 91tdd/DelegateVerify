@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 
 namespace DelegateVerify
@@ -11,9 +12,14 @@ namespace DelegateVerify
         {
             //TODO
             var model = Substitute.For<IOrderModel>();
-            var orderController = new OrderController(model);
+            var log = Substitute.For<ILog>();
+            var orderController = new OrderController(model, log);
 
-            orderController.Save(new Order {Id = 91, Amount = 100});
+            var order = new Order {Id = 91, Amount = 100};
+            model.Save(order, Arg.Any<Action<Order>>(), Arg.Invoke(order) );
+            orderController.Save(order);
+
+            log.Received(1).Write(Arg.Is<string>(x => x.Contains("update")));
         }
 
 
@@ -22,9 +28,15 @@ namespace DelegateVerify
         {
             //TODO
             var model = Substitute.For<IOrderModel>();
-            var orderController = new OrderController(model);
+            var log = Substitute.For<ILog>();
+            var orderController = new OrderController(model, log);
 
             orderController.Save(new Order {Id = 91, Amount = 100});
         }
+    }
+
+    public interface ILog
+    {
+        void Write(string message);
     }
 }
