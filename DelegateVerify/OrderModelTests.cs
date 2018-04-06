@@ -1,21 +1,21 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NSubstitute;
+﻿using NSubstitute;
+using NUnit.Framework;
 
 namespace DelegateVerify
 {
-    [TestClass]
+    [TestFixture]
     public class OrderModelTests
     {
         private IRepository<Order> _repository = Substitute.For<IRepository<Order>>();
 
-        [TestMethod]
+        [Test]
         public void insert_order()
         {
             //TODO
             var myOrderModel = new MyOrderModel(_repository);
         }
 
-        [TestMethod]
+        [Test]
         public void update_order()
         {
             //TODO
