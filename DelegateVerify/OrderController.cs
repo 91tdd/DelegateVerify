@@ -9,7 +9,7 @@ namespace DelegateVerify
         public OrderController(IOrderModel orderModel)
         {
             _orderModel = orderModel;
-        } 
+        }
 
         public void Save(Order order)
         {
@@ -24,6 +24,11 @@ namespace DelegateVerify
         private void InsertMessage(Order order)
         {
             Console.WriteLine($"insert order id:{order.Id} with {order.Amount} successfully!");
+        }
+
+        public void DeleteAmountMoreThan100()
+        {
+            _orderModel.Delete(o => o.Amount > 100);
         }
     }
 }

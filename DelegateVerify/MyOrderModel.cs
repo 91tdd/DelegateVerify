@@ -28,5 +28,10 @@ namespace DelegateVerify
                 updateCallback(order);
             }
         }
+
+        public void Delete(Func<Order, bool> predicate)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

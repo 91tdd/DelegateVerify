@@ -64,7 +64,7 @@
     <Compile Include="MyOrderModel.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="OrderController.cs" />
-    <Compile Include="OrderConrollertTests.cs" />
+    <Compile Include="OrderControllerTests.cs" />
     <Compile Include="OrderModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
